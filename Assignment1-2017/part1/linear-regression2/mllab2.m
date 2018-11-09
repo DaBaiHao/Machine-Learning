@@ -15,7 +15,7 @@ iterations = 100;
 %% 
 theta = gradient_descent(X, y, theta, alpha, iterations);
 %disp(theta);
-Xpredict = [3000,4];
+Xpredict = [1650,3];
 Xnorm = (Xpredict - mean_vec)./std_vec;
 Xnorm = [1,Xnorm];
 Ypredict = sum(Xnorm .* theta);
