@@ -1,4 +1,4 @@
-function theta = gradient_descent(X, y, theta, alpha, iterations, do_plot)
+function theta = gradient_descent(X, y, theta, alpha, iterations,l, do_plot)
     %GRADIENT_DESCENT do Gradient Descent for a given X, y, theta, alpha
     %for a specified number of iterations
 
