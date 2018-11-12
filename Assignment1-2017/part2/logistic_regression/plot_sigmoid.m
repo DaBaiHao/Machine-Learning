@@ -3,7 +3,7 @@ function h=plot_sigmoid
     y = [sigmoid(x)]
     h=figure(1); 
     
-    tiltle('sigmoid');
+    title('sigmoid');
     plot(x,y,'-');
     xlabel('x');
     ylabel('y');
