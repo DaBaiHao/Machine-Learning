@@ -19,21 +19,20 @@ function theta = gradient_descent(X, y, theta, alpha, iterations,l, do_plot)
         % gradient descent
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-        theta_0 = theta(1);
-        theta_1 = theta(2);
-        theta_2 = theta(3);
+       
+        
 
         %update theta(1) and store in temporary variable theta_0
         sigma = 0.0;
 
         for i = 1:m
             %hypothesis = 1 * theta(1) + X(i, 1) * theta(2) + X(i, 2) * theta(3);
-            hypothesis = calculate_hypothesis(X,theta,m);
+            hypothesis = calculate_hypothesis(X,theta,i);
             output = y(i);
             sigma = sigma + (hypothesis - output);
         end
 
-        theta_0 = theta_0 - ((alpha * 1.0) / m) * sigma;
+        theta(1) = theta(1) - ((alpha * 1.0) / m) * sigma;
 
 
         %update theta(2) and store in temporary variable theta_1
@@ -42,35 +41,61 @@ function theta = gradient_descent(X, y, theta, alpha, iterations,l, do_plot)
         for i = 1:m
             %hypothesis = X(i, 1) * theta(1) + X(i, 2) * theta(2);
             %hypothesis = 1 * theta(1) + X(i, 1) * theta(2) + X(i, 2) * theta(3);
-            hypothesis = calculate_hypothesis(X,theta,m);
+            hypothesis = calculate_hypothesis(X,theta,i);
             output = y(i);
             sigma = sigma + (hypothesis - output) * X(i, 2);
         end
 
-        theta_1 = theta_1 - ((alpha * 1.0) / m) * sigma;
+        theta(2) = theta(2)*(1 - alpha*l/m) - ((alpha * 1.0) / m) * sigma;
        
         
          
         for i = 1:m
             %hypothesis = X(i, 1) * theta(1) + X(i, 2) * theta(2);
             %hypothesis = 1 * theta(1) + X(i, 1) * theta(2) + X(i, 2) * theta(3);
-            hypothesis = calculate_hypothesis(X,theta,m);
+            hypothesis = calculate_hypothesis(X,theta,i);
             output = y(i);
-            sigma = sigma + (hypothesis - output) * X(i, 2);
+            sigma = sigma + (hypothesis - output) * X(i, 3);
         end
 
-        theta_2 = theta_2 - ((alpha * 1.0) / m) * sigma;
+        theta(3) = theta(3)*(1 - alpha*l/m) - ((alpha * 1.0) / m) * sigma;
        
         
+        for i = 1:m
+            
+            hypothesis = calculate_hypothesis(X,theta,i);
+            output = y(i);
+            sigma = sigma + (hypothesis - output) * X(i, 4);
+        end
+
+        theta(4) = theta(4)*(1 - alpha*l/m) - ((alpha * 1.0) / m) * sigma;
+       
+        for i = 1:m
+            
+            hypothesis = calculate_hypothesis(X,theta,i);
+            output = y(i);
+            sigma = sigma + (hypothesis - output) * X(i, 5);
+        end
+
+        theta(5) = theta(5)*(1 - alpha*l/m) - ((alpha * 1.0) / m) * sigma;
+       
         
-        
+        for i = 1:m
+            
+            hypothesis = calculate_hypothesis(X,theta,i);
+            output = y(i);
+            sigma = sigma + (hypothesis - output) * X(i, 6);
+        end
+
+        theta(6) = theta(6)*(1 - alpha*l/m) - ((alpha * 1.0) / m) * sigma;
+       
         
         %update theta
-        theta = [theta_0, theta_1, theta_2];
+        %theta = [theta_0, theta_1, theta_2];
         disp (theta);
         
         %update cost_vector
-        cost_vector = [cost_vector; compute_cost(X, y, theta)];
+        cost_vector = [cost_vector; compute_cost_regularised(X, y, theta,l)];
 
         if do_plot
             plot_hypothesis(X, y, theta);

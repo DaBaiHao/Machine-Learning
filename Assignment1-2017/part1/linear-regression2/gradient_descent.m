@@ -27,8 +27,8 @@ function theta = gradient_descent(X, y, theta, alpha, iterations, do_plot)
         sigma = 0.0;
 
         for i = 1:m
-            %hypothesis = 1 * theta(1) + X(i, 1) * theta(2) + X(i, 2) * theta(3);
-            hypothesis = calculate_hypothesis(X,theta,m);
+            %hypothesis = 1 * theta(1) + X(i, 2) * theta(2) + X(i, 3) * theta(3);
+            hypothesis = calculate_hypothesis(X,theta,i);
             output = y(i);
             sigma = sigma + (hypothesis - output);
         end
@@ -41,8 +41,8 @@ function theta = gradient_descent(X, y, theta, alpha, iterations, do_plot)
 
         for i = 1:m
             %hypothesis = X(i, 1) * theta(1) + X(i, 2) * theta(2);
-            %hypothesis = 1 * theta(1) + X(i, 1) * theta(2) + X(i, 2) * theta(3);
-            hypothesis = calculate_hypothesis(X,theta,m);
+            %hypothesis = 1 * theta(1) + X(i, 2) * theta(2) + X(i, 3) * theta(3);
+            hypothesis = calculate_hypothesis(X,theta,i);
             output = y(i);
             sigma = sigma + (hypothesis - output) * X(i, 2);
         end
@@ -53,10 +53,10 @@ function theta = gradient_descent(X, y, theta, alpha, iterations, do_plot)
          
         for i = 1:m
             %hypothesis = X(i, 1) * theta(1) + X(i, 2) * theta(2);
-            %hypothesis = 1 * theta(1) + X(i, 1) * theta(2) + X(i, 2) * theta(3);
-            hypothesis = calculate_hypothesis(X,theta,m);
+            %hypothesis = 1 * theta(1) + X(i, 2) * theta(2) + X(i, 3) * theta(3);
+            hypothesis = calculate_hypothesis(X,theta,i);
             output = y(i);
-            sigma = sigma + (hypothesis - output) * X(i, 2);
+            sigma = sigma + (hypothesis - output) * X(i, 3);
         end
 
         theta_2 = theta_2 - ((alpha * 1.0) / m) * sigma;

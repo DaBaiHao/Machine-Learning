@@ -14,10 +14,10 @@ function mllab3()
     end
 
     % initialise theta
-    theta = [1.0, 1.0, 1.0, 1.0, 1.0];
+    theta = [1.0, 1.0, 1.0, 1.0, 1.0,1.0];
 
-    alpha = 0.01;
-    l = 0.0;
+    alpha = 0.3;
+    l = 0.1;
     iterations = 1000;
     do_plot = false;
 

@@ -1,5 +1,6 @@
 %% This loads our data
 [X, y] = load_data_ex2();
+ 
 
 %% Normalise and initialize.
 [X, mean_vec, std_vec] = normalise_features(X);
@@ -15,7 +16,7 @@ iterations = 100;
 %% 
 theta = gradient_descent(X, y, theta, alpha, iterations);
 %disp(theta);
-Xpredict = [1650,3];
+Xpredict = [3000,4];
 Xnorm = (Xpredict - mean_vec)./std_vec;
 Xnorm = [1,Xnorm];
 Ypredict = sum(Xnorm .* theta);
