@@ -10,6 +10,8 @@ function J=compute_cost(X, y, theta)
         output = y(i);
         cost = -output*log(hypothesis)-(1-output)*log(1-hypothesis);
         % modify this to calculate the cost function, using hypothesis and output
+        
+        
         %cost = 0.0;
         J =J+cost;
         
