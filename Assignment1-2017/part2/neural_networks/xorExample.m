@@ -1,13 +1,13 @@
 
 training_set_input = [
-    0,0;
+    1,0;
     0,1;
     1,0;
     1,1
 ];
 
 training_set_output = [
-    0;
+    1;
     1;
     1;
     0

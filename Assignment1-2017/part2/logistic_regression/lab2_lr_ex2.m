@@ -13,7 +13,7 @@ theta=[1.0,1.0,1.0];
 alpha = 0.1;
 iterations = 100;
 
-[training_input,training_output,test_input,test_output] = return_test_set(X,y,10);
+[training_input,training_output,test_input,test_output] = return_test_set(X,y,50);
 
 [new_theta,cost_array]=gradient_descent(training_input,training_output,theta,alpha,iterations);
 

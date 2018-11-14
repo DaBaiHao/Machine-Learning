@@ -131,9 +131,9 @@ classdef NeuralNetwork < handle
                 % 
                 accumulate = 0;
                 for i=1:length(outputs)
-                 accumulate = accumulate + output_deltas(i)*hidden_deltas(i);
+                 accumulate = accumulate + output_deltas(i) * nn.output_weights(j,i);
                 end 
-                hidden_deltas(j) = accumulate * sigmoid_derivative(outputs(j));
+                hidden_deltas(j) = accumulate * sigmoid_derivative(nn.hidden_neurons(1,j));
             end
 
             % Step 3. update weights output --> hidden
@@ -149,8 +149,17 @@ classdef NeuralNetwork < handle
 
             % Step 4. update weights input --> hidden.
             % hint, use a similar process to step 3, except iterate over the input neurons and hidden deltas
-
-
+            
+            
+             for i=1:length(nn.hidden_neurons)
+                for j=1:length(hidden_deltas)
+                    nn.hidden_weights(i,j) =nn.hidden_weights(i,j) -(hidden_deltas(j) * nn.hidden_neurons(i) * learning_rate);
+                end
+            end
+            
+            
+            
+            
             % this is our cost function
             J = 0.0;
             for t =1:length(targets)
