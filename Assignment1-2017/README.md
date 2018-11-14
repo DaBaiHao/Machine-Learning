@@ -58,15 +58,15 @@ Graph:
 
 #### Task 6：
 
-- First time
+1 First time
  - Training error:0.32608
  - Test error:0.66556
 
-- Second time
+2 Second time
  - Training error:0.48779
  - Test error:0.29797
 
-- Third Time
+3 Third Time
  - Training error:0.46722
  - Test error:0.32186
 
