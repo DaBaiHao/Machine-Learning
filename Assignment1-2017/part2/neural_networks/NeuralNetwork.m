@@ -119,13 +119,22 @@ classdef NeuralNetwork < handle
             output_deltas = zeros(1,length(nn.output_neurons));
             outputs=nn.output_neurons;
             for i=1:length(outputs)
+                % 
                 output_deltas(i) = (outputs(i)-targets(i))*sigmoid_derivative(outputs(i));
             end
             % Step 2. Hidden deltas (used to change weights from input --> output).
             hidden_deltas = zeros(1,length(nn.hidden_neurons));
             % hint... create a for loop here to iterate over the hidden neurons and for each
             % hidden neuron create another for loop to iterate over the ouput neurons
-
+            
+            for j=1:length(nn.hidden_neurons)
+                % 
+                accumulate = 0;
+                for i=1:length(outputs)
+                 accumulate = accumulate + output_deltas(i)*hidden_deltas(i);
+                end 
+                hidden_deltas(j) = accumulate * sigmoid_derivative(outputs(j));
+            end
 
             % Step 3. update weights output --> hidden
             for i=1:length(nn.hidden_neurons)

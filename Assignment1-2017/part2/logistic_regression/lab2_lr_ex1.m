@@ -9,7 +9,7 @@ X=[ones(size(X,1),1),X];
 
 % initialise theta
 theta=[1.0,1.0,1.0];
-alpha = 0.1;
+alpha = 0.01;
 iterations = 100;
 
 % run gradient descent
