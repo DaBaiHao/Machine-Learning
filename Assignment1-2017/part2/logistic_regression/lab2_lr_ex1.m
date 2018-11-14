@@ -17,6 +17,6 @@ iterations = 100;
 
 display(['Final error:',num2str(cost_array(end))]);
 % plot our data and decision boundary
-% plot_data_function(X,y)
-% plot_boundary(X,t)
+ plot_data_function(X,y)
+ plot_boundary(X,t)
 

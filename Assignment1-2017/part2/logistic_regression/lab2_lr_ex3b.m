@@ -11,18 +11,20 @@ X=[ones(size(X,1),1),X];
 % for question 7, modify the dataset X to have more features (in each row)
 	% append to X(i),the following features:
 	% here append x_2 * x_3 (remember that x_1 is the bias)
-
+    X_2byX_3 = X(:, 2) .* X(:, 3);
 	% here append x_2 * x_2 (remember that x_1 is the bias)
-
+     X_2byX_2 = X(:, 2) .* X(:, 2);
 	% here append x_3 * x_3 (remember that x_1 is the bias)
-
+    X_3byX_3 = X(:, 3) .* X(:, 3);
+    
+    X = [X, X_2byX_3, X_2byX_2, X_3byX_3];
 % initialise theta. Remember that theta needs to be
 % the same size as one row of X
 theta=[1.0,1.0,1.0,1.0,1.0,1.0];
 alpha = 0.05;
 iterations = 100;
 
-[training_input,training_output,test_input,test_output] = return_test_set(X,y,20);
+[training_input,training_output,test_input,test_output] = return_test_set(X,y,70);
 
 [t,cost_array]=gradient_descent_training(training_input,training_output,test_input,test_output,theta,alpha,iterations);
 

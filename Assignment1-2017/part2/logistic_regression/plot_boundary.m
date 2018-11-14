@@ -6,9 +6,26 @@ function plot_boundary(x,theta)
     max_x2 = max(x(:,3));
     min_x2 = min(x(:,3));
     % modify this:
-    y1 = 0.0;
+    
+   [col,~] = size(x);
+    number =min(x(:,2));
+    for i = 1:col
+        if(number == x(i,2))
+            j = i;
+        end
+    end
+    y1 = x(j,3);
+   
     % modify this:
-    y2 = 0.0;
+    number =max(x(:,2));
+    for i = 1:col
+        if(number == x(i,2))
+            j = i;
+        end
+    end
+    
+    
+    y2 = x(j,3);
     
     
     plot([min_x1,max_x1],[y1,y2],'-')
