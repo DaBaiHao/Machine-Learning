@@ -16,17 +16,8 @@ function plot_boundary(x,theta)
  %       end
  %   end
 %    y1 = x(j,3);
-   y1 = min_x1*(-theta(1)/theta(2));
-    % modify this:
-%    number =max(x(:,2));
- %   for i = 1:col
- %       if(number == x(i,2))
- %           j = i;
- %       end
- %   end
-    
-    
-    y2 = max_x1*(-theta(1)/theta(2));
+y1 =(-1)*(theta(1)+theta(2)*min_x1/theta(3));
+y2 = (-1)*(theta(1)+theta(2)*max_x1/theta(3));
     
     
     plot([min_x1,max_x1],[y1,y2],'-')
