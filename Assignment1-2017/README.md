@@ -131,7 +131,7 @@ disp(Ypredict);
 
 
 #### Task 3:
-
+##### 3.1
 
 Modify the [gradient_descent.m](https://github.com/DaBaiHao/Machine-Learning/blob/master/Assignment1-2017/part1/linear-regression3/gradient_descent.m),
 
@@ -191,8 +191,9 @@ function hypothesis = calculate_hypothesis(X, theta, training_example)
 end
 
 ```
-
-###### When alpha equals 0.1
+##### 3.2
+###### Changing alpha
+###### When alpha equals 0.1, lamda 0.1
 
 The cost graph:
 # ![img](part1/linear-regression3/task21005.jpg)
@@ -200,14 +201,14 @@ Curve:
 # ![img](part1/linear-regression3/task31.jpg)
 
 
-###### When alpha equals 0.2
+###### When alpha equals 0.2, lamda 0.1
 
 The cost graph:
 # ![img](part1/linear-regression3/task302.jpg)
 Curve:
 # ![img](part1/linear-regression3/task302c.jpg)
 
-###### When alpha equals 0.9
+###### When alpha equals 0.9, lamda 0.1
 
 The cost graph:
 # ![img](part1/linear-regression3/task309.jpg)
@@ -215,12 +216,36 @@ Curve:
 # ![img](part1/linear-regression3/task309c.jpg)
 
 
-###### When alpha equals 0.001
+###### When alpha equals 0.001, lamda 0.1
 
 The cost graph:
 # ![img](part1/linear-regression3/task3001.jpg)
 Curve:
 # ![img](part1/linear-regression3/task3001c.jpg)
+
+##### When alpha equals 0.9, is the best value of alpha.
+
+##### 3.3
+###### Changing lamda
+###### lamda equals 0.1, alpha 0.9
+The cost graph:
+# ![img](part1/linear-regression3/task309.jpg)
+Curve:
+# ![img](part1/linear-regression3/task309c.jpg)
+
+###### lamda equals 1, alpha 0.9
+The cost graph:
+# ![img](part1/linear-regression3/task3091.jpg)
+Curve:
+# ![img](part1/linear-regression3/task3091c.jpg)
+
+###### lamda equals 100, alpha 0.9
+The cost graph:
+# ![img](part1/linear-regression3/task309100.jpg)
+Curve:
+# ![img](part1/linear-regression3/task309100c.jpg)
+
+The lamda is the a kind of penalty function, to prevent the overfitting. The large number lamda will highly affect the curve to fit the dataset.
 
 
 
