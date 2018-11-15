@@ -64,7 +64,9 @@ function hypothesis = calculate_hypothesis(X, theta, training_example)
 
 
 
-    hypothesis =1 * theta_0 + theta_1 * X(training_example, 2) + theta_2 * X(training_example, 3);
+    hypothesis =1 * theta_0 + ...
+    theta_1 * X(training_example, 2) + ...
+    theta_2 * X(training_example, 3);
 
 
     %hypothesis = 0.0;
@@ -208,7 +210,8 @@ Modify the [calculate_hypothesis.m](https://github.com/DaBaiHao/Machine-Learning
 function hypothesis = calculate_hypothesis(X, theta, training_example)
     %CALCULATE_HYPOTHESIS This calculates the hypothesis for a given X,
 
-    hypothesis =(X(training_example, 1)) * theta(1) + theta(2) * (X(training_example, 2))^1 + ...
+    hypothesis =(X(training_example, 1)) * theta(1) +...
+     theta(2) * (X(training_example, 2))^1 + ...
      theta(3) * (X(training_example, 3))^2+...
       theta(4) * (X(training_example, 4))^3+...
        theta(5) * (X(training_example, 5))^4+...
@@ -344,7 +347,8 @@ function result=calculate_hypothesis(X,theta,training_example)
     hypothesis = 0.0;
     [y , x] = size(theta);
     for i =1 : x
-        hypothesis = hypothesis + X(training_example, i)* theta(i);
+        hypothesis = hypothesis +...
+         X(training_example, i)* theta(i);
     end
     result=sigmoid(hypothesis);
 end
@@ -357,7 +361,8 @@ end
 Modify the line:
 
 ```matlab
-cost = -output*log(hypothesis)-(1-output)*log(1-hypothesis);
+cost = -output*log(hypothesis)-...
+(1-output)*log(1-hypothesis);
 ```
 
 The Final cost found is 0.40545
