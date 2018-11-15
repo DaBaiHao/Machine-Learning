@@ -516,7 +516,8 @@ Implement backpropagation:
 output_deltas = zeros(1,length(nn.output_neurons));
 outputs=nn.output_neurons;
 for i=1:length(outputs)
-      output_deltas(i) = (outputs(i)-targets(i))*sigmoid_derivative(outputs(i));
+      output_deltas(i) = (outputs(i)-...
+      targets(i))*sigmoid_derivative(outputs(i));
 end
 ```
 
@@ -530,7 +531,8 @@ for j=1:length(nn.hidden_neurons)
 
     accumulate = 0;
     for i=1:length(outputs)
-          accumulate = accumulate + output_deltas(i) * nn.output_weights(j,i);
+          accumulate = accumulate +...
+           output_deltas(i) * nn.output_weights(j,i);
     end
     hidden_deltas(j) = accumulate * sigmoid_derivative(nn.hidden_neurons(1,j));
 end
@@ -542,7 +544,8 @@ end
 % Step 3\. update weights output --> hidden
 for i=1:length(nn.hidden_neurons)
     for j=1:length(output_deltas)
-        nn.output_weights(i,j) =nn.output_weights(i,j) -(output_deltas(j) * nn.hidden_neurons(i) * learning_rate);
+        nn.output_weights(i,j) =nn.output_weights(i,j) -...
+        (output_deltas(j) * nn.hidden_neurons(i) * learning_rate);
     end
 end
 ```
@@ -553,7 +556,8 @@ end
 % Step 4\. update weights input --> hidden.
 for i=1:length(nn.hidden_neurons)
     for j=1:length(hidden_deltas)
-        nn.hidden_weights(i,j) =nn.hidden_weights(i,j) -(hidden_deltas(j) * nn.hidden_neurons(i) * learning_rate);
+        nn.hidden_weights(i,j) =nn.hidden_weights(i,j) -...
+        (hidden_deltas(j) * nn.hidden_neurons(i) * learning_rate);
     end
 end
 ```
