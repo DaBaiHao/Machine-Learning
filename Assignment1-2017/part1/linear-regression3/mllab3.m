@@ -16,7 +16,7 @@ function mllab3()
     % initialise theta
     theta = [1.0, 1.0, 1.0, 1.0, 1.0,1.0];
 
-    alpha = 0.3;
+    alpha = 0.01;
     l = 0.1;
     iterations = 1000;
     do_plot = false;

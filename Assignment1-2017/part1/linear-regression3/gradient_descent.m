@@ -29,7 +29,7 @@ function theta = gradient_descent(X, y, theta, alpha, iterations,l, do_plot)
             %hypothesis = 1 * theta(1) + X(i, 1) * theta(2) + X(i, 2) * theta(3);
             hypothesis = calculate_hypothesis(X,theta,i);
             output = y(i);
-            sigma = sigma + (hypothesis - output);
+            sigma = sigma + (hypothesis - output)*X(i, 1);
         end
 
         theta(1) = theta(1) - ((alpha * 1.0) / m) * sigma;

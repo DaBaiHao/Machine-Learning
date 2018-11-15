@@ -10,7 +10,7 @@ X = [ones(size(X, 1), 1), X];
 
 %initialise theta
 theta = [0.0, 0.0, 0.0];
-alpha = 0.1;
+alpha = 0.5;
 iterations = 100;
 
 %% 

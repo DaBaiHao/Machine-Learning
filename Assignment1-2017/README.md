@@ -1,16 +1,230 @@
 
 ## Part 1
 #### Task 1
+##### 1.1:
 According to
 # ![img](1task1.png)
 
-Modify the calculate_hypothesis.m:
+Modify the [calculate_hypothesis.m](https://github.com/DaBaiHao/Machine-Learning/blob/master/Assignment1-2017/part1/linear-regression1/calculate_hypothesis.m):
 ``` Matlab
 theta_0 = theta(1);
 theta_1 = theta(2);
 hypothesis =X(training_example,1) * theta_0 + theta_1 * X(training_example, 2);
 
 ```
+##### 1.2:
+Modify the [gradient_descent.m](https://github.com/DaBaiHao/Machine-Learning/blob/master/Assignment1-2017/part1/linear-regression1/gradient_descent.m)
+``` Matlab
+% hypothesis = X(i, 1) * theta(1) + X(i, 2) * theta(2);
+hypothesis = calculate_hypothesis(X,theta,i);
+```
+##### 1.3:
+
+When the learning rate equals to 0.1:
+# ![img](part1/linear-regression1/task1131.jpg)
+
+When the learning rate equals to 0.01:
+# ![img](part1/linear-regression1/task11301.jpg)
+
+When the learning rate equals to 0.001:
+# ![img](part1/linear-regression1/task113001.jpg)
+
+Observations:
+Low learning rates caused slow convergence and needed more iterations. However, the cost graph shows that it is more likely to got the local optimum than high learning rates.
+
+
+#### Task 2:
+
+##### 2.1:
+
+According to
+# ![img](1task2.jpg)
+
+Modify the [calculate_hypothesis.m](https://github.com/DaBaiHao/Machine-Learning/blob/master/Assignment1-2017/part1/linear-regression2/calculate_hypothesis.m):
+
+``` Matlab
+function hypothesis = calculate_hypothesis(X, theta, training_example)
+    %CALCULATE_HYPOTHESIS This calculates the hypothesis for a given X,
+    %theta and specified training example
+
+    theta_0 = theta(1);
+    theta_1 = theta(2);
+    theta_2 = theta(3);
+
+
+
+    hypothesis =1 * theta_0 + theta_1 * X(training_example, 2) + theta_2 * X(training_example, 3);
+
+
+    %hypothesis = 0.0;
+end
+
+```
+Modify the [gradient_descent.m](https://github.com/DaBaiHao/Machine-Learning/blob/master/Assignment1-2017/part1/linear-regression2/gradient_descent.m), Add:
+
+``` Matlab
+for i = 1:m
+    %hypothesis = X(i, 1) * theta(1) + X(i, 2) * theta(2);
+    %hypothesis = 1 * theta(1) + X(i, 2) * theta(2) + X(i, 3) * theta(3);
+    hypothesis = calculate_hypothesis(X,theta,i);
+    output = y(i);
+    sigma = sigma + (hypothesis - output) * X(i, 3);
+end
+
+theta_2 = theta_2 - ((alpha * 1.0) / m) * sigma;
+
+
+%update theta
+theta = [theta_0, theta_1, theta_2];
+```
+
+##### 2.2:
+
+When alpha equals 0.1:
+# ![img](part1/linear-regression2/task21.jpg)
+The theta
+ - 1.0e+05 * 3.4040    
+ - 1.0e+05 * 1.0708   
+ - 1.0e+05 * -0.0223
+
+When alpha equals 0.5:
+# ![img](part1/linear-regression2/task2105.jpg)
+The theta
+ - 1.0e+05 * 3.4041    
+ - 1.0e+05 * 1.1063   
+ - 1.0e+05 * -0.0665
+
+When alpha equals 0.05:
+# ![img](part1/linear-regression2/task21005.jpg)
+The theta
+ - 1.0e+05 * 3.3840    
+ - 1.0e+05 * 0.9433   
+ - 1.0e+05 * 0.1360
+
+Observations:
+The alpha have strong effect on the theta value finding. At the end of the optimization, When the alpha equals to 0.5, the best theta value is :
+- 1.0e+05 * 3.4041    
+- 1.0e+05 * 1.1063   
+- 1.0e+05 * -0.0665
+
+##### 2.3:
+According to :
+# ![img](part1/linear-regression2/task231.png)
+the code modified to:
+
+``` Matlab
+Xpredict = [3000,4];
+Xnorm = (Xpredict - mean_vec)./std_vec;
+Xnorm = [1,Xnorm];
+Ypredict = sum(Xnorm .* theta);
+disp(Ypredict);
+```
+
+ - When 1650 sq.ft. 3 bedrooms:
+   The predicts price is
+> 2.9308e+05
+
+- When 3000 sq.ft. 4 bedrooms:
+  The predicts price is
+> 4.7228e+05
+
+
+
+#### Task 3:
+
+
+Modify the [gradient_descent.m](https://github.com/DaBaiHao/Machine-Learning/blob/master/Assignment1-2017/part1/linear-regression3/gradient_descent.m),
+
+###### Add lamda :
+``` Matlab
+function theta = gradient_descent(X, y, theta, alpha, iterations,l, do_plot)
+
+...
+cost_vector = [cost_vector; compute_cost_regularised(X, y, theta,l)];
+...
+
+end
+```
+
+###### Update theta 0 :
+``` Matlab
+sigma = 0.0;
+
+for i = 1:m
+    %hypothesis = 1 * theta(1) + X(i, 1) * theta(2) + X(i, 2) * theta(3);
+    hypothesis = calculate_hypothesis(X,theta,i);
+    output = y(i);
+    sigma = sigma + (hypothesis - output)*X(i, 1);
+end
+
+theta(1) = theta(1) - ((alpha * 1.0) / m) * sigma;
+
+```
+
+###### Update theta 1 and other theta :
+``` Matlab
+sigma = 0.0;
+
+for i = 1:m
+    %hypothesis = X(i, 1) * theta(1) + X(i, 2) * theta(2);
+    %hypothesis = 1 * theta(1) + X(i, 1) * theta(2) + X(i, 2) * theta(3);
+    hypothesis = calculate_hypothesis(X,theta,i);
+    output = y(i);
+    sigma = sigma + (hypothesis - output) * X(i, 2);
+end
+
+theta(2) = theta(2)*(1 - alpha*l/m) - ((alpha * 1.0) / m) * sigma;
+
+```
+
+
+
+
+
+Modify the [calculate_hypothesis.m](https://github.com/DaBaiHao/Machine-Learning/blob/master/Assignment1-2017/part1/linear-regression3/calculate_hypothesis.m):
+``` Matlab
+function hypothesis = calculate_hypothesis(X, theta, training_example)
+    %CALCULATE_HYPOTHESIS This calculates the hypothesis for a given X,
+
+    hypothesis =(X(training_example, 1)) * theta(1) + theta(2) * (X(training_example, 2))^1 + theta(3) * (X(training_example, 3))^2+ theta(4) * (X(training_example, 4))^3+ theta(5) * (X(training_example, 5))^4+ theta(6) * (X(training_example, 6)^5);
+
+end
+
+```
+
+###### When alpha equals 0.1
+
+The cost graph:
+# ![img](part1/linear-regression3/task21005.jpg)
+Curve:
+# ![img](part1/linear-regression3/task31.jpg)
+
+
+###### When alpha equals 0.2
+
+The cost graph:
+# ![img](part1/linear-regression3/task302.jpg)
+Curve:
+# ![img](part1/linear-regression3/task302c.jpg)
+
+###### When alpha equals 0.9
+
+The cost graph:
+# ![img](part1/linear-regression3/task309.jpg)
+Curve:
+# ![img](part1/linear-regression3/task309c.jpg)
+
+
+###### When alpha equals 0.001
+
+The cost graph:
+# ![img](part1/linear-regression3/task3001.jpg)
+Curve:
+# ![img](part1/linear-regression3/task3001c.jpg)
+
+
+
+
 
 
 
@@ -26,7 +240,7 @@ hypothesis =X(training_example,1) * theta_0 + theta_1 * X(training_example, 2);
 
 According to :
 # ![img](part2-1-1-1.png)
-the code change to
+the code modified to
 
 ``` Matlab
 output = 1./(1+exp(-z));  
