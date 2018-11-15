@@ -151,9 +151,9 @@ classdef NeuralNetwork < handle
             % hint, use a similar process to step 3, except iterate over the input neurons and hidden deltas
             
             
-             for i=1:length(nn.hidden_neurons)
+             for i=2:length(inputs)
                 for j=1:length(hidden_deltas)
-                    nn.hidden_weights(i,j) =nn.hidden_weights(i,j) -(hidden_deltas(j) * nn.hidden_neurons(i) * learning_rate);
+                    nn.hidden_weights(i,j) =nn.hidden_weights(i,j) -(hidden_deltas(j) * inputs(i) * learning_rate);
                 end
             end
             

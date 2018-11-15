@@ -1,7 +1,23 @@
 
+## Part 1
+#### Task 1
+According to
+# ![img](1task1.png)
+
+Modify the calculate_hypothesis.m:
+``` Matlab
+theta_0 = theta(1);
+theta_1 = theta(2);
+hypothesis =X(training_example,1) * theta_0 + theta_1 * X(training_example, 2);
+
+```
 
 
 
+
+
+
+----
 ## Part 2
 
 ### Logistic Regression
@@ -189,26 +205,69 @@ for i=1:length(nn.hidden_neurons)
     end
 end
 ```
+
+When learning rate equals to 2
+The output :
+ - target output:0, actual output0.013118
+ - target output:1, actual output0.98976
+ - target output:1, actual output0.46662
+ - target output:0, actual output0.46685
+# ![img](part2/neural_networks/task10.jpg)
+
 #### Task 11:
-
-
 
 #### Task 12:
 
+
+#### Task 13:
+
 ###### When hidden neurons equals to 1:
-Cost graph:
+Costs of the training set:
 # ![img](part2/neural_networks/task121train.jpg)
-Differences between training and test sets:
+Costs of the test set:
 # ![img](part2/neural_networks/task121difference.jpg)
+ - Error training:17.9567
+ - Error testing:18.7816
 
 ###### When hidden neurons equals to 2:
-Cost graph:
+Costs of the training set:
 # ![img](part2/neural_networks/task122.jpg)
-Differences between training and test sets:
+Costs of the test set:
 # ![img](part2/neural_networks/task122d.jpg)
+ - Error training:4.909
+ - Error testing:5.9335
+
 
 ###### When hidden neurons equals to 3:
-Cost graph:
+Costs of the training set:
 # ![img](part2/neural_networks/task123.jpg)
-Differences between training and test sets:
+Costs of the test set:
 # ![img](part2/neural_networks/task123d.jpg)
+ - Error training:3.9066
+ - Error testing:5.6948
+
+###### When hidden neurons equals to 5:
+Costs of the training set:
+# ![img](part2/neural_networks/task125.jpg)
+Costs of the test set:
+# ![img](part2/neural_networks/task125d.jpg)
+ - Error training:2.4614
+ - Error testing:4.6142
+
+###### When hidden neurons equals to 7:
+Costs of the training set:
+# ![img](part2/neural_networks/task127.jpg)
+Costs of the test set:
+# ![img](part2/neural_networks/task127d.jpg)
+ - Error training:1.0397
+ - Error testing:4.4482
+
+###### When hidden neurons equals to 10:
+Costs of the training set:
+# ![img](part2/neural_networks/task1210.jpg)
+Costs of the test set:
+# ![img](part2/neural_networks/task1210d.jpg)
+ - Error training:1.0285
+ - Error testing:4.0931
+
+As the number of the hidden neurons goes up, the training error and testing error decrease.

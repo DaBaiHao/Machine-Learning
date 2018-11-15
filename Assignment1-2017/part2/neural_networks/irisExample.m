@@ -12,7 +12,7 @@ actual_training_set_output = [training_set_output(1:25,:);training_set_output(51
 actual_test_set_input = [training_set_input(26:50,:);training_set_input(76:100,:);training_set_input(126:150,:)];
 actual_test_set_output = [training_set_output(26:50,:);training_set_output(76:100,:);training_set_output(126:150,:)];
 
-hidden_neurons = 5;
+hidden_neurons = 10;
 [errors,nn,tr_errors,t_errors] = NeuralNetwork.train(actual_training_set_input,actual_training_set_output,hidden_neurons,1000,0.1,actual_test_set_input,actual_test_set_output,true)
 display([ 'Error training:',num2str(NeuralNetwork.get_error(actual_training_set_input,actual_training_set_output,nn))])
 display([ 'Error testing:',num2str(NeuralNetwork.get_error(actual_test_set_input,actual_test_set_output,nn))])
