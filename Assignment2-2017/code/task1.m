@@ -20,6 +20,11 @@ K = 3;
 
 figure(2);
 plot_gaussian(covar,mu,2,K);
+%% task 3
+x = [f1, f2];
+
+
+
 
 
 

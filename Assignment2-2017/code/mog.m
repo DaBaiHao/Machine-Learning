@@ -4,8 +4,10 @@
 % (http://www.gatsby.ucl.ac.uk/~zoubin/course02/)
 
 % Initialise parameters
+x = [f1, f2];
 
-[n D] = size(x);                    % number of observations (n) and dimension (D)
+
+[n, D] = size(x);                    % number of observations (n) and dimension (D)
 k = 3;                              % number of components
 p = ones(1,k)/k;                    % mixing proportions
 mu = x(ceil(n.*rand(1,k)),:)';      % means picked rqandomly from data
