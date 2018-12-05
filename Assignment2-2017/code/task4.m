@@ -13,4 +13,8 @@ for i = 1:number
         count_phno2 =count_phno2 + 1;
     end
 end
-x = x1;
+
+
+
+
+

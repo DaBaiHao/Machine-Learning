@@ -42,4 +42,22 @@ model1_phno1_acc = count_phno1_model1/n;
 model1_phno2_acc = count_phno2_model1/n;
 
 
-
+%% task4
+M = zeros(number);
+k = 3;
+for i = 1:number
+    for j = 1:number
+        x = [f1(i,:),f2(j,:)];
+        z1 = classsily_task4(mu_1,s2_1,p_1,x,k);
+        z2 = classsily_task4(mu_2,s2_2,p_2,x,k);
+        if z1 > z2
+            M(i,j) = 1;
+        else
+            M(i,j) = 2;
+        end
+        
+    end
+end
+    
+    
+    
