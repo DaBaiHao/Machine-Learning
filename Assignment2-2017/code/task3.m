@@ -69,6 +69,7 @@ end
 
 x_1 = sort(x_1);
 x_2 = sort(x_2);
+M = zeros(count,count_2);
 [i_end,~] = size(x_1);
 [j_end,~] = size(x_2);
 for i = 1:i_end
