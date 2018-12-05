@@ -48,42 +48,33 @@ M = zeros(number);
 k = 3;
 imagesc(M); 
 
-min_f1 = min(f1);
-max_f1 = max(f1);
-min_f2 = min(f2);
-max_f2 = max(f2);
+min_f1 = min([x1(:,1);x2(:,1)]);
+max_f1 = max([x1(:,1);x2(:,1)]);
+min_f2 = min([x1(:,2);x2(:,2)]);
+max_f2 = max([x1(:,2);x2(:,2)]);
 
 count = 1;
-for i = 1 : n
-    if ((x1(i,1) <= max(f1))&&(x1(i,1) >= min(f1)))
-        x_1(count,1) = x1(i,1) ;
+count_2 = 1;
+for i = 1 : number
+    if ((f1(i,1) <= max_f1)&&(f1(i,1) >= min_f1))
+        x_1(count,1) = f1(i,1) ;
         count =count+ 1;
     end
-    if ((x1(i,2) <= max(f1))&&(x1(i,2) >= min(f1)))
-        x_1(count,1) = x1(i,2) ;
-        count =count+ 1;
+    if ((f2(i,1) <= max_f2)&&(f2(i,1) >= min_f2))
+        x_2(count_2,1) = f2(i,1) ;
+        count_2 =count_2+ 1;
     end
+    
 end
+
 x_1 = sort(x_1);
-
-count = 1;
-for i = 1 : n
-    if ((x2(i,1) <= max(f1))&&(x2(i,1) >= min(f1)))
-        x_2(count,1) = x2(i,1) ;
-        count =count+ 1;
-    end
-    if ((x2(i,2) <= max(f1))&&(x2(i,2) >= min(f1)))
-        x_2(count,1) = x2(i,2) ;
-        count =count+ 1;
-    end
-end
 x_2 = sort(x_2);
 [i_end,~] = size(x_1);
 [j_end,~] = size(x_2);
 for i = 1:i_end
     for j = 1:j_end
         
-        x = [x_1(i,1),x_2(j,:)];
+        x = [x_1(i,:),x_2(j,:)];
         z1 = classsily_task4(mu_1,s2_1,p_1,x,k);
         z2 = classsily_task4(mu_2,s2_2,p_2,x,k);
         if z1 > z2
