@@ -414,7 +414,80 @@ end
 1. When model 1 classfily phno1 the error is _0.0197_
 2. When model 2 classfily phno2 the error is _0.0526_
 
-## _When K = 6_
+#### _When K = 6_
 
 1. When model 1 classfily phno1 the error is _0.0329_
 2. When model 2 classfily phno2 the error is _0.03947_
+
+
+
+## Task 4
+
+main function
+``` matlab
+%% task4
+[n,~] = size(x2);
+M = zeros(number);
+k = 3;
+imagesc(M);
+
+min_f1 = min([x1(:,1);x2(:,1)]);
+max_f1 = max([x1(:,1);x2(:,1)]);
+min_f2 = min([x1(:,2);x2(:,2)]);
+max_f2 = max([x1(:,2);x2(:,2)]);
+
+count = 1;
+count_2 = 1;
+for i = 1 : number
+    if ((f1(i,1) <= max_f1)&&(f1(i,1) >= min_f1))
+        x_1(count,1) = f1(i,1) ;
+        count =count+ 1;
+    end
+    if ((f2(i,1) <= max_f2)&&(f2(i,1) >= min_f2))
+        x_2(count_2,1) = f2(i,1) ;
+        count_2 =count_2+ 1;
+    end
+
+end
+
+x_1 = sort(x_1);
+x_2 = sort(x_2);
+M = zeros(count,count_2);
+[i_end,~] = size(x_1);
+[j_end,~] = size(x_2);
+for i = 1:i_end
+    for j = 1:j_end
+
+        x = [x_1(i,:),x_2(j,:)];
+        z1 = classsily_task4(mu_1,s2_1,p_1,x,k);
+        z2 = classsily_task4(mu_2,s2_2,p_2,x,k);
+        if z1 > z2
+            M(i,j) = 1;
+        else
+            M(i,j) = 2;
+        end
+
+    end
+end
+imagesc(M);
+```
+
+using function *classsily_task4*
+``` matlab
+function z = classsily_task4(mu,s2,p,x,k)
+
+for i=1:k
+    Z(:,i) = p(i)*det(s2(:,:,i))^(-0.5)*exp(-0.5*sum((x'-repmat(mu(:,i),1,1))'*inv(s2(:,:,i)).*(x'-repmat(mu(:,i),1,1))',2));
+end
+
+
+z= sum(Z );
+
+
+
+end
+
+```
+
+The result:
+![img](4-1-1.jpg)
