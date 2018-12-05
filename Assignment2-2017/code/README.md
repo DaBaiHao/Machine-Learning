@@ -491,3 +491,61 @@ end
 
 The result:
 ![img](4-1-1.jpg)
+
+
+
+
+
+
+## Task 5
+adding
+``` matlab
+load('PB_data.mat');
+J = [f1,f2,f1+f2];
+
+[number, dimensional] = size(J);
+count_phno1 = 1;
+count_phno2 = 1;
+for i = 1:number
+    if phno(i) == 1
+        x1(count_phno1,:) = J(i,:);
+        count_phno1 =count_phno1 + 1;
+    end
+
+    if phno(i) == 2
+        x2(count_phno2,:) = J(i,:);
+        count_phno2 =count_phno2 + 1;
+    end
+end
+x = x1;
+```
+
+when fit Gaussians using diagonal covariances will Causes
+ - **Matrix is close to singular or badly scaled. Results may be inaccurate**
+so using the line to fit general Gaussians
+
+``` matlab
+s2(:,:,i) = ...
+       (x'-repmat(mu(:,i),1,n))*(repmat(Z(:,i),1,D).*(x'-repmat(mu(:,i),1,n))')./sum(Z(:,i));
+
+```
+After adding the line to calculate covariance of the data, the error in **plot_gaussian** function is that
+``` matlab
+Error using mesh (line 71)
+X, Y, Z, and C cannot be complex.
+```
+
+adding abs to convert from complex to real numbers
+``` matlab
+ex = abs(reshape(epoints(1,:),n,n));
+ey = abs(reshape(epoints(2,:),n,n));
+ez = abs(reshape(epoints(3,:),n,n));
+```
+and the error is
+Causes:
+ - Matrix is close to singular or badly scaled. Results may be inaccurate
+ - Very ill covariance matrix - not plotting this one
+
+After change J dataset from [f1,f2,f1+f2] to [f1,f2,f1.*f2] the function can running
+the result, that because of the Covariance matrix irreversible 
+![img](5-1-1.jpg)

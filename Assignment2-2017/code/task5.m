@@ -1,5 +1,5 @@
 load('PB_data.mat');
-J = [f1,f2,f1+f2];
+J = [f1,f2,f1.*f2];
 
 [number, dimensional] = size(J);
 count_phno1 = 1;
@@ -54,18 +54,19 @@ try
       
       % We will fit Gaussians with diagonal covariances:
       
-      %s2(:,:,i) = diag((x'-repmat(mu(:,i),1,n)).^2*Z(:,i)./sum(Z(:,i))); 
+      s2(:,:,i) = diag((x'-repmat(mu(:,i),1,n)).^2*Z(:,i)./sum(Z(:,i))); 
       
       % To fit general Gaussians use the line:
-       s2(:,:,i) = (x'-repmat(mu(:,i),1,n))*(repmat(Z(:,i),1,D).*(x'-repmat(mu(:,i),1,n))')./sum(Z(:,i));
+       s2(:,:,i) = ...
+       (x'-repmat(mu(:,i),1,n))*(repmat(Z(:,i),1,D).*(x'-repmat(mu(:,i),1,n))')./sum(Z(:,i));
       
       p(i) = mean(Z(:,i));
     end
     
     clf
     hold on
-    plot3(x(:,1),x(:,2),x(:,2),'.');
-    for i=1:k
+    plot3(x(:,1),x(:,2),x(:,3),'.');
+    for i=1:3
       plot_gaussian(2*s2(:,:,i),mu(:,i),i,11);
     end
     drawnow;

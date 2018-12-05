@@ -24,9 +24,9 @@ if ~isempty(find(covar-covar == 0))
     svect = [reshape(sx,1,n*n); reshape(sy,1,n*n); reshape(sz,1,n*n)];
     epoints = sqrtm(covar) * svect + mu*ones(1,n*n);
     
-    ex = reshape(epoints(1,:),n,n);
-    ey = reshape(epoints(2,:),n,n);
-    ez = reshape(epoints(3,:),n,n);
+    ex = abs(reshape(epoints(1,:),n,n));
+    ey = abs(reshape(epoints(2,:),n,n));
+    ez = abs(reshape(epoints(3,:),n,n));
     
     colourset = [1 0 0; 0 1 0; 0 0 1; 1 1 0; 1 0 1; 0 1 1];
     colour = colourset(mod(col-1,size(colourset,1))+1,:);      
