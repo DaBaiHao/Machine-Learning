@@ -251,10 +251,24 @@ val(:,:,6) =
      0    1.4630
 ```
 
-````
-# Task 3
 
-main file
+
+##  Task 3
+
+1. Create two dataset first, the ***x1*** and ***x2***, that the phno1 and phno2 on f1 and f2
+2. Then using **mog_function(3,x1)** and **mog_function(3,x2)**, to calculate two **model** for phno1 and phno2.
+3. Then using **classfily** function to calculate the Maximum Likelihood of each value
+
+| - |phno1 | phno2 |
+| --- |--- | --- |
+| model1 |z_model1(:,1) | z_model1(:,2) |
+| model2  |  z_model2(:,1)| z_model2(:,2)  |
+
+4. Compare each value, the model1 and model2 on phno1 Maximum Likelihood
+5. calculate the miss-classification error
+
+
+**main file**
 ``` matlab
 [number,~] = size(phno);
 
@@ -298,9 +312,10 @@ end
 
 model1_phno1_acc = count_phno1_model1/n;
 model1_phno2_acc = count_phno2_model1/n;
-````
+```
 
-mog_function
+
+**mog_function**
 
 ```matlab
 function[mu,p,s2] = mog_function(k,x)
@@ -374,7 +389,10 @@ end;
 end
 ```
 
-classfily function
+**classfily function**
+1. **mu, s2, p** is the parameters of the MoG learnt for each phonemes
+2. z is the 𝑝(𝑥; 𝜃1) or 𝑝(𝑥; 𝜃2),
+
 
 ```matlab
 function z= classfily(mu,s2,p,x1,x2,k)
@@ -382,13 +400,14 @@ function z= classfily(mu,s2,p,x1,x2,k)
 
 x = x1;
 [n, D] = size(x);
-% m: the mean of the data
-% S: covariance of the data
-% P: data category distribution probability
+% mu: the mean of the data
+% s2: covariance of the data
+% p: data category distribution probability
 % X: The data we need to test
 
 for i=1:k
-    Z(:,i) = p(i)*det(s2(:,:,i))^(-0.5)*exp(-0.5*sum((x'-repmat(mu(:,i),1,n))'*inv(s2(:,:,i)).*(x'-repmat(mu(:,i),1,n))',2));
+    Z(:,i) = p(i)*det(s2(:,:,i))^(-0.5)*exp(-0.5*sum((x'- ...
+    repmat(mu(:,i),1,n))'*inv(s2(:,:,i)).*(x'-repmat(mu(:,i),1,n))',2));
 end
 
 for i = 1:n
@@ -547,5 +566,5 @@ Causes:
  - Very ill covariance matrix - not plotting this one
 
 After change J dataset from [f1,f2,f1+f2] to [f1,f2,f1.*f2] the function can running
-the result, that because of the Covariance matrix irreversible 
+### The result,
 ![img](5-1-1.jpg)
