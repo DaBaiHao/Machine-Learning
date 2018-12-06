@@ -59,6 +59,7 @@ The result MoG model:
   ```matlab
   mu = [312.710439163323,    270.394427119210,    350.944427310065;
   2784.44469003590e+03,    2285.45797383453e+03,    3229.23625856582e+03]
+  
   ```
 
 - _p_ is a 1*3 matrix, the value is:
@@ -67,35 +68,36 @@ The result MoG model:
   p = [0.382687297465680,    0.435128587673123,    0.182184114861197]
   ```
 
-- _s2_ is a 2 _2_ 3 matrix, the value is: ``` matlab val(:,:,1) =
+- _s2_ is a 2 _2_ 3 matrix, the value is:
+
+``` matlab 
+val(:,:,1) =
 
   1.0e+03 *
 
   3.5603 0
-
-  ```
     0    7.7339
-  ```
+
 
 val(:,:,2) =
 
 1.0e+04 *
 
-```
+
 0.1214         0
      0    1.4277
-```
+
 
 val(:,:,3) =
 
 1.0e+04 *
 
-```
+
 0.4118         0
      0    2.7091
-```
 
-````
+
+```
 
 
 
@@ -117,63 +119,63 @@ The result MoG model:
   [0.171249509264198,    0.150221313489049,    0.335031245076133,    0.0695248642416978,    0.248124309467916,    0.0258487584610062]
   ```
 
-- _s2_ is a 2 _2_ 6 matrix, the value is: ``` matlab
+- _s2_ is a 2 _2_ 6 matrix, the value is: 
+``` matlab
 
 val(:,:,1) =
 
 1.0e+04 *
 
-```
+
 0.1242         0
      0    2.7331
-```
+
 
 val(:,:,2) =
 
 1.0e+03 *
 
-```
+
 0.2779         0
      0    5.7640
-```
+
 
 val(:,:,3) =
 
 1.0e+03 *
 
-```
+
 3.9580         0
      0    6.8954
-```
+
 
 val(:,:,4) =
 
 1.0e+04 *
 
-```
+
 0.0024         0
      0    3.1738
-```
+
 
 val(:,:,5) =
 
 1.0e+04 *
 
-```
+
 0.0366         0
      0    1.3749
-```
+
 
 val(:,:,6) =
 
 1.0e+04 *
 
-```
+
 0.7479         0
      0    1.6615
-```
 
-````
+```
 
 
 
@@ -257,15 +259,19 @@ val(:,:,6) =
 
 1. Create two dataset first, the ***x1*** and ***x2***, that the phno1 and phno2 on f1 and f2
 2. Then using **mog_function(3,x1)** and **mog_function(3,x2)**, to calculate two **model** for phno1 and phno2.
+The **mog_function** is the function to calculate the MoG model, and return the mean of the data, covariance of the data, data category distribution probability, the algorithm is save as the mog script. 
 3. Then using **classfily** function to calculate the Maximum Likelihood of each value
+The **classfily** function is that to calculate each models Maximum Likelihood using the model calculate pervious.
 
 | - |phno1 | phno2 |
 | --- |--- | --- |
 | model1 |z_model1(:,1) | z_model1(:,2) |
 | model2  |  z_model2(:,1)| z_model2(:,2)  |
 
-4. Compare each value, the model1 and model2 on phno1 Maximum Likelihood
-5. calculate the miss-classification error
+4. Compare each value, the model1 and model2 on phno1 Maximum Likelihood, if model1> model2 that means the value predict as phno1, if model1 < model2 that means the value predict as phno2.
+5. calculate model1 miss-classification error from the number of the model 1 predict phno1 divide by the total number of phno1. 
+
+
 
 
 **main file**
