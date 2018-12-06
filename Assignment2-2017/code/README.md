@@ -6,6 +6,8 @@
 
 ### Task 1:
 
+Task 1 function:
+
 ```matlab
 %% task 1
 load('PB_data.mat');
@@ -23,7 +25,7 @@ The result figures:
 
 ### Task 2:
 
-In the _mog.m_ file, adding the code below to generate a dataset **x** that contains only the F1 and F2.
+In the _mog.m_ file, adding the code below to generate a dataset **x** that contains only the F1 and F2. If the x equals to x1 is the phno1. If x equals to x2 is phno2.
 
 ```matlab
 %% task 2
@@ -48,9 +50,11 @@ x = x1;
 
 After running the _mog.m_ file, the results show below:
 
-_1\. When K = 3:_
+_1\. When K = 3, phno1:_
 
-The result graph: ![img](1-1-2.jpg)
+The result graph:
+
+ ![img](1-1-2.jpg)
 
 The result MoG model:
 
@@ -59,7 +63,7 @@ The result MoG model:
   ```matlab
   mu = [312.710439163323,    270.394427119210,    350.944427310065;
   2784.44469003590e+03,    2285.45797383453e+03,    3229.23625856582e+03]
-  
+
   ```
 
 - _p_ is a 1*3 matrix, the value is:
@@ -70,7 +74,7 @@ The result MoG model:
 
 - _s2_ is a 2 _2_ 3 matrix, the value is:
 
-``` matlab 
+``` matlab
 val(:,:,1) =
 
   1.0e+03 *
@@ -101,7 +105,7 @@ val(:,:,3) =
 
 
 
-*2\. When K = 6:*
+*2\. When K = 6, phno1:*
 
 The result graph:
 ![img](1-1-3.jpg)
@@ -111,15 +115,15 @@ The result MoG model:
 ``` matlab
 [333.301151546791,    309.171182344323,    314.443682651265,    284.247267200079,    244.957501372368,    458.465969387509;
 3172.63228243276e+03,    2325.24372449017e+03,    2781.85307474120e+03,    2591.94227735183e+03,    2237.62777390853e+03,    3416.81380642650e+03]
-````
+​````
 
 - _p_ is a 1*6 matrix, the value is:
 
   ```matlab
   [0.171249509264198,    0.150221313489049,    0.335031245076133,    0.0695248642416978,    0.248124309467916,    0.0258487584610062]
-  ```
+```
 
-- _s2_ is a 2 _2_ 6 matrix, the value is: 
+- _s2_ is a 2 _2_ 6 matrix, the value is:
 ``` matlab
 
 val(:,:,1) =
@@ -189,87 +193,92 @@ The result MoG model:
 ``` matlab
 [544.064488976845,    389.075845110550,    465.645081333001,    442.297841772107,    370.132231710788,    407.965321650608;
 2883.05491920153e+03,    2212.18739345475e+03,    2582.76483436577e+03,    2347.55469226313e+03,    2004.86418512093e+03,    1954.39100593128e+03]
-````
+​````
 
 - _p_ is a 1*6 matrix, the value is:
 
   ```matlab
   [0.103584787611484,    0.0440218618511802,    0.307746216705428,    0.141480231793390,    0.149136837118164,    0.254030064920354]
-  ```
+```
 
-- _s2_ is a 2 _2_ 6 matrix, the value is: ``` matlab
+- _s2_ is a 2 _2_ 6 matrix, the value is:
 
+
+
+ ``` matlab
 val(:,:,1) =
 
 1.0e+04 *
 
-```
+
 0.7294         0
      0    3.0936
-```
+
 
 val(:,:,2) =
 
 1.0e+03 *
 
-```
+
 1.2787         0
      0    0.3088
-```
+
 
 val(:,:,3) =
 
 1.0e+03 *
 
-```
+
 4.3575         0
      0    7.1193
-```
+
 
 val(:,:,4) =
 
 1.0e+03 *
 
-```
+
 1.0575         0
      0    3.8370
-```
+
 
 val(:,:,5) =
 
 1.0e+03 *
 
-```
+
 4.6796         0
      0    3.8552
-```
+
 
 val(:,:,6) =
 
 1.0e+04 *
 
-```
+
 0.0731         0
      0    1.4630
-```
+ ```
 
 
 
 ##  Task 3
 
-1. Create two dataset first, the ***x1*** and ***x2***, that the phno1 and phno2 on f1 and f2
+The algorithm that to calculate the miss-classification error for each of the model:
+
+1. Create data phno1 and phno2 .
 2. Then using **mog_function(3,x1)** and **mog_function(3,x2)**, to calculate two **model** for phno1 and phno2.
-The **mog_function** is the function to calculate the MoG model, and return the mean of the data, covariance of the data, data category distribution probability, the algorithm is save as the mog script. 
-3. Then using **classfily** function to calculate the Maximum Likelihood of each value
-The **classfily** function is that to calculate each models Maximum Likelihood using the model calculate pervious.
+3. The **mog_function** is the function to train the data for phno1 and phno2 with  MoGs and finally generate a MoG  model for  phno1 and phno2, the model included the mean of the data, covariance of the data, data category distribution probability, the algorithm is save as the mog script.
+4. Then using **classfily** function to calculate the Maximum Likelihood of model for phno1 and phno2.
+     The **classfily** function is that to calculate each models Maximum Likelihood using the model calculate from mog_function function.
 
 | - |phno1 | phno2 |
 | --- |--- | --- |
 | model1 |z_model1(:,1) | z_model1(:,2) |
 | model2  |  z_model2(:,1)| z_model2(:,2)  |
 
-4. Compare each value, the model1 and model2 on phno1 Maximum Likelihood, if model1> model2 that means the value predict as phno1, if model1 < model2 that means the value predict as phno2.
-5. calculate model1 miss-classification error from the number of the model 1 predict phno1 divide by the total number of phno1. 
+4. Compare each value, the model1 and model2 on phno1 Maximum Likelihood, if the model1 Maximum Likelihood at that point is large than another model2 Maximum Likelihood calculated that means the value predict as phno1. If the model2 Maximum Likelihood at that point is large than another model1 Maximum Likelihood calculated that means the value predict as phno2.
+5. Calculate model1 miss-classification error from the number of the model 1 predict phno1 divide by the total number of phno1.  calculate model2 miss-classification error from the number of the model 2 predict phno2 divide by the total number of phno2.
 
 
 
@@ -277,7 +286,7 @@ The **classfily** function is that to calculate each models Maximum Likelihood u
 **main file**
 ``` matlab
 [number,~] = size(phno);
-
+% Create data phno1 and phno2 .
 count_phno1 = 1;
 count_phno2 = 1;
 for i = 1:number
@@ -291,6 +300,7 @@ for i = 1:number
         count_phno2 =count_phno2 + 1;
     end
 end
+% Then using mog_function(3,x1) and mog_function(3,x2), to calculate two model for phno1 and phno2.
 [n,~] = size(x2);
 [mu_1,p_1,s2_1] = mog_function(3,x1)
 [mu_2,p_2,s2_2] = mog_function(3,x2)
@@ -436,6 +446,7 @@ end
 end
 ```
 
+#### _When K = 3_
 1. When model 1 classfily phno1 the error is _0.0197_
 2. When model 2 classfily phno2 the error is _0.0526_
 
@@ -448,7 +459,25 @@ end
 
 ## Task 4
 
+The algorithm that to create a classification matrix is that:
+
+1. Find the min and max value of the f1 on phno1 and phno2
+2. Find the min and max value of the f2 on phno1 and phno2
+3. Find the values in f1 and f2 that in the range of the min and max value.
+4. Sort the values
+5. Create matrix M, the size based on the length of the values
+6.  Find each point of M, which number of the [x_1(i,:),x_2(j,:)];
+7. Using
+``` matlab
+Z(:,i) = p(i)*det(s2(:,:,i))^(-0.5)*exp(-0.5*sum((x'-repmat(mu(:,i),1,1))'*inv(s2(:,:,i)).*(x'-repmat(mu(:,i),1,1))',2));
+```
+using model1 and model1 that calculated pervious task 3 to calculate which point belongs to phno1 or phno2
+9. Show the matrix using imagesc
+
 main function
+
+
+
 ``` matlab
 %% task4
 [n,~] = size(x2);
